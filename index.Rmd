@@ -11,7 +11,7 @@ Please also note that simple R Markdown sites are _not_ based on **blogdown**. T
 ::: columns
 ::: {.column width="50%" style="text-align: center;"}
 
-`r ''````{r, echo=FALSE, fig.align='center', out.width='100%'}
+{r, echo=FALSE, fig.align='center', out.width='100%'}
 knitr::include_graphics("images/profile.png")
 
 
