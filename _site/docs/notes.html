@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Personal Website</title>
+
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">My Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Personal Website</h1>
+
+</div>
+
+
+<p>Open the R console and set your working directory to your selected directory.</p>
+<pre class="r"><code>setwd(&quot;C:/Users/mirra/OneDrive/Documents/Website_personal&quot;)</code></pre>
+<div id="create-website-skeleton" class="section level2" number="0.1">
+<h2><span class="header-section-number">0.1</span> Create website skeleton</h2>
+<p>We will create a website skeleton using a baked-in command from the <code>rmarkdown</code> package.</p>
+<ul>
+<li>Note the use of <code>:::</code> in the command below.</li>
+</ul>
+<pre class="r"><code>rmarkdown:::site_skeleton(getwd())</code></pre>
+<p>This will create three files:</p>
+<ul>
+<li><code>_site.yml</code>: this is a file we will edit to control meta-features of the website</li>
+<li><code>about.Rmd</code> and <code>index.Rmd</code>: these are just template files for pages on the website</li>
+</ul>
+<p>The basic design of an R Markdown website is to have a <code>_site.yml</code> file that controls
+much of the appearance of the website (e.g., the navigation bar, the website theme,
+directories where files are found/saved, etc…).</p>
+<p>Otherwise, each page within the website is created using an <code>.Rmd</code> file.</p>
+</div>
+<div id="create-r-project" class="section level2" number="0.2">
+<h2><span class="header-section-number">0.2</span> Create R Project</h2>
+<p>Let’s go ahead and make this directory an R Project, because R Studio tends to play
+more nicely with R Projects.</p>
+<p>To do this, go to File: New Project: From Existing Directory and then select the
+directory where your website lives.</p>
+<p>R Studio should be smart enough to figure out that this directory is a website. You can
+confirm this by looking at the contents of the <code>website.Rproj</code> file. For example, you could
+open your Terminal, set working directory to your website directory and execute the following command. You will need to replace <code>website.Rproj</code> with the name of your
+<code>.Rproj</code> file name.</p>
+<pre class="bash"><code>cat Website_personal.Rproj</code></pre>
+</div>
+<div id="change-output-directory" class="section level2" number="0.3">
+<h2><span class="header-section-number">0.3</span> Change output directory</h2>
+<p>This step is not strictly necessary, but is helpful for keeping things tidy.</p>
+<p>Open the <code>_site.yml</code> file and add the following line at the end.</p>
+<pre class="yaml"><code>output_dir: docs</code></pre>
+<p>Recall that GitHub pages likes looking in a folder called <code>docs</code> to find <code>.html</code>
+files that it serves on a GitHub pages website.</p>
+</div>
+<div id="render-the-site-locally" class="section level2" number="0.4">
+<h2><span class="header-section-number">0.4</span> Render the site locally</h2>
+<p>We will use a command in the R console to build your website. Open the R Console
+and execute the following command.</p>
+<pre class="r"><code>rmarkdown::render_site()</code></pre>
+<p>Check the <code>docs</code> folder of your project directory. You should see:</p>
+<ul>
+<li><code>about.html</code> and <code>index.html</code>: these are the rendered <code>html</code> documents that make up your website</li>
+<li><code>site_libs</code> directory: this contains all the extra bells and whistles that are needed to make your website look pretty on GitHub pages.</li>
+</ul>
+<p>All of these files will need to be committed and pushed to GitHub to get your website working.</p>
+</div>
+<div id="turn-off-jekyll" class="section level2" number="0.5">
+<h2><span class="header-section-number">0.5</span> Turn off jekyll</h2>
+<p>In prepartion for pushing to GitHub, we will add an empty file named <code>.nojekyll</code> to your project. This can be done via the Terminal.</p>
+<pre class="bash"><code>touch .nojekyll</code></pre>
+<p>This is not strictly necessary, but it may slightly speed up website deployment when you push new material to GitHub. The presence of this file tells GitHub pages that it doesn’t need to rebuild any part of the website before serving the site.</p>
+<p>Read more about <code>jekyll</code> <a href="https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll">here</a>.</p>
+</div>
+<div id="initialize-git" class="section level2" number="0.6">
+<h2><span class="header-section-number">0.6</span> Initialize git</h2>
+<p>Open a terminal, make sure your working directory is set to your project’s root directory and execute the following command.</p>
+<pre class="bash"><code>git init</code></pre>
+<p>This initializes a git repository. Let’s go ahead and create a <code>.gitignore</code> file. As in DATA 550, I like to do this using <code>touch</code>.</p>
+<pre class="bash"><code>touch .gitignore</code></pre>
+<p>Open the <code>.gitignore</code> file and add the <code>.Rproj.user</code> directory to the <code>.gitignore</code>. I will also go ahead and add the <code>.DS_Store</code> file that Macs love to create to my <code>.gitignore</code> as well. Prior to saving, my <code>.gitignore</code> will look like this.</p>
+<pre class="bash"><code>.Rproj.user/*
+.DS_Store</code></pre>
+<p>Now, we can go ahead and make our first commit.</p>
+<pre class="bash"><code>git add --all
+git commit -m &quot;first commit&quot;</code></pre>
+</div>
+<div id="initialize-github-repository" class="section level2" number="0.7">
+<h2><span class="header-section-number">0.7</span> Initialize GitHub repository</h2>
+<p>Now hop over to <a href="https://github.com">Github</a> and create a new repository. Do not initialize with a README and a <code>.gitignore</code>.</p>
+<p>Add your GitHub repository as a remote and push using the <code>ssh</code> protocol.</p>
+<pre class="bash"><code>git remote add origin git@github.com:benkeser/example_website
+git push origin main</code></pre>
+</div>
+<div id="create-github-pages-website" class="section level2" number="0.8">
+<h2><span class="header-section-number">0.8</span> Create GitHub pages website</h2>
+<p>In your web browser, navigate to your GitHub repository.</p>
+<p>Click on Settings. Then on the left hand side of the screen, look under <code>Code and automation</code> and click on <code>Pages</code>.</p>
+<p>Leave <code>Source</code> set to <code>Deploy from a branch</code>.</p>
+<p>Under <code>Branch</code>, select <code>main</code>, select the <code>docs</code> folder, and click <code>Save</code>.</p>
+<p>Your website is now live at <a href="https://yourusername.github.io/yourreponame" class="uri">https://yourusername.github.io/yourreponame</a>. You can visit that website to confirm.</p>
+<p>You can add this website address to your repo description so that it’s easy to find.</p>
+</div>
+<div id="personalizing-your-website" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Personalizing your website</h1>
+<div id="general-workflow" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> General workflow</h2>
+<p>We will now make some updates to personalize your website. The general workflow for updating your site is as follows:</p>
+<ul>
+<li>Update source code (i.e., <code>.Rmd</code> or <code>_site.yml</code> files)</li>
+<li>Compile the website using <code>rmarkdown::render_site()</code> to generate new <code>.html</code> files</li>
+<li>Open <code>docs/index.html</code> to preview website</li>
+<li>When satisfied with appearance, <code>git commit</code> and <code>git push</code> to update the website online</li>
+</ul>
+<p>What you see locally will be what you see on GitHub. If the website renders differently online vs. locally, then there is likely an issue of not pushing updated <code>site_libs</code> to GitHub.</p>
+<p>In general, you will not want to update the compiled source code (i.e., the <code>.html</code> files in the <code>docs</code> folder) directly.</p>
+</div>
+<div id="updating-the-home-page" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Updating the home page</h2>
+<p>Let’s add a picture of yourself to the home page. First, make an <code>images</code> directory.</p>
+<pre class="bash"><code>mkdir images</code></pre>
+<p>Move a picture of yourself to this directory. My picture will be called <code>profile.png</code>.</p>
+<p>Add a code chunk to <code>index.Rmd</code></p>
+<pre class="markdown"><code>```{r, echo=FALSE, fig.align=&#39;center&#39;, out.width=&#39;40%&#39;}
+knitr::include_graphics(&quot;images/profile.png&quot;)
+```</code></pre>
+<p>Note that we used <code>out.width='40%'</code> to specify relative width of the image. This allows the image to scale with different sized browsers</p>
+<p>Getting an image to look nice on a website across all possible devices typically requires:</p>
+<ul>
+<li>Reasonably high resolution image</li>
+<li>Moving away from using just <code>markdown</code> to style your page and instead writing <code>html</code> and/or <code>css</code> directly</li>
+</ul>
+<p>Note: when you re-build the website, R Markdown will create a copy of your <code>images</code> directory in the <code>docs</code> folder. In general, R Markdown will put any referenced files into the <code>docs</code> directory.</p>
+<ul>
+<li>This creates some redundancy, but that is ok unless you are uploading very large files.</li>
+<li>It enables a simple workflow wherein you only edit files in your projects root directory and <em>never</em> directly modify files in <code>docs</code>.</li>
+</ul>
+</div>
+<div id="adding-columns-to-the-homepage" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Adding columns to the homepage</h2>
+<p>Let’s change the layout of the homepage to have two columns. This is something we will (for now) achieve directly with (mostly) <code>markdown</code> syntax.</p>
+<p>Add the following to <code>index.Rmd</code>.</p>
+<pre><code>::: columns
+::: {.column width=&quot;50%&quot; style=&quot;text-align: center;&quot;}
+
+```{r, echo=FALSE, fig.align=&#39;center&#39;, out.width=&#39;100%&#39;}
+knitr::include_graphics(&quot;images/profile.png&quot;)
+```
+
+## Your Name
+
+:::
+
+::: {.column width=&quot;50%&quot; style=&quot;text-align: left;&quot;}
+
+Add some text here describing yourself. Add a [link](https://google.com) so we can see behavior later. 
+
+:::</code></pre>
+<p>A few notes:
+* The above is mostly using Markdown syntax; however, some <code>css</code> has crept into the code – this is the <code>style="text-align: left;"</code> bit above.
+* Notice we have changed <code>out.width='100%'</code> in order for the image to span the entire left column.</p>
+<p>You can play around a bit with the formatting, but note that the columns do not have the best “reactive” behavior. If you view them on a narrow device, the text will get smaller so that everything fits on the screen. Nicer behavior might be to have the columns stack on top of one another. This would require integrating raw html and/or css, which we discuss later.</p>
+</div>
+<div id="updating-the-about-page" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Updating the About page</h2>
+<p>We will make some light edits to the About page to include some basic information about yourself.</p>
+<p>Remove the auto-generated content and add a few sentences about yourself (e.g., your education background, current jobs, interests, etc…)</p>
+</div>
+<div id="updating-the-navigation-bar" class="section level2" number="1.5">
+<h2><span class="header-section-number">1.5</span> Updating the navigation bar</h2>
+<p>Let’s now update the navigation bar to include some links to “socials”. We will do this by updating the <code>_site.yml</code> file. I will add a link to my Github. Other links you might want to include:</p>
+<ul>
+<li>Email (beware spam if listing on a website)</li>
+<li>Google scholar profile</li>
+<li>Bluesky/X (if that’s your thing)</li>
+<li>ORCID</li>
+<li>Linked In</li>
+</ul>
+<p>Open the <code>_site.yml</code> file and modify the <code>navbar</code> section it so it looks like this:</p>
+<pre class="markdown"><code>navbar:
+  left:
+  - text: Home
+    href: index.html
+    icon: fa-home
+  - text: About
+    href: about.html
+    icon: fa-book-open
+  right:
+  - href: https://github.com/benkeser
+    icon: fa-github</code></pre>
+<p>Here, we have added free icons using <a href="https://fontawesome.com/"><code>fontawesome</code></a>. Check out the <a href="https://rstudio.github.io/fontawesome/index.html">R package documentation</a> to see what icons are available.</p>
+</div>
+<div id="creating-a-projects-page" class="section level2" number="1.6">
+<h2><span class="header-section-number">1.6</span> Creating a Projects page</h2>
+<p>Let’s now add a new page linking to some of our projects.</p>
+<p>Create a new <code>.Rmd</code> file in your project root directory called <code>projects.Rmd</code>.</p>
+<pre class="bash"><code>touch projects.Rmd</code></pre>
+<p>Open this file and edit it to look something like this.</p>
+<pre class="markdown"><code>---
+title: &quot;Projects&quot;
+---
+
+### [DATA 550 website](https://bit.ly/info550)
+
+A jeykll website I built for previous iterations of this class
+
+### [`vaxstrat` R package](https://github.com/allicodi/vaxstrat)
+
+An R package for computing principal effects quantifying vaccine impact on post-infection endpoints.
+</code></pre>
+<p>Before rendering the site, we should add the Projects page to the <code>navbar</code>. Open <code>_site.yml</code> and update the <code>navabar</code> section.</p>
+<pre class="markdown"><code>navbar:
+  left:
+  - text: Home
+    href: index.html
+    icon: fa-home
+  - text: About
+    href: about.html
+    icon: fa-book-open
+  - text: Projects
+    href: projects.html
+    icon: fa-computer
+  right:
+  - href: https://github.com/benkeser
+    icon: fa-github</code></pre>
+</div>
+<div id="including-a-cv-or-resume" class="section level2" number="1.7">
+<h2><span class="header-section-number">1.7</span> Including a CV or resume</h2>
+<p>Let’s also add a pdf resume and link to it. Make a new directory in your project directory to hold a <code>.pdf</code> version of your resume or CV.</p>
+<pre class="bash"><code>mkdir files</code></pre>
+<p>Move your resume into this folder.</p>
+<p>Now update the <code>navbar</code> section of your <code>_site.yml</code> file.</p>
+<pre class="markdown"><code>navbar:
+  left:
+  - text: Home
+    href: index.html
+    icon: fa-home
+  - text: About
+    href: about.html
+    icon: fa-book-open
+  - text: Projects
+    href: projects.html
+    icon: fa-computer
+  - text: CV
+    href: files/cv_full.pdf
+    icon: fa-paperclip
+  right:
+  - href: https://github.com/benkeser
+    icon: fa-github</code></pre>
+</div>
+</div>
+<div id="styling-your-website" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Styling your website</h1>
+<p>Now that the basic workflow for adding and doing light styling of pages is done, let’s see how to make the website look fancier using themes and custom <code>css</code> files.</p>
+<div id="add-a-site-theme" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Add a site theme</h2>
+<p>The most straightforward way to update the entire appearance of your website is to select a <a href="https://getbootstrap.com/">Bootstrap theme</a>.</p>
+<p>To do this update your <code>_site.yml</code> file to include a section specifying the theme.</p>
+<pre class="markdown"><code>output:
+  html_document:
+    theme: yeti</code></pre>
+<p>There are several default themes:</p>
+<ul>
+<li><code>default</code>, <code>cerulean</code>, <code>journal</code>, <code>flatly</code>, <code>darkly</code>, <code>readable</code>, <code>spacelab</code>, <code>united</code>, <code>cosmo</code>, <code>lumen</code>, <code>paper</code>, <code>sandstone</code>, <code>simplex</code>, and <code>yeti</code> (use <code>null</code> for no theme)</li>
+</ul>
+<p>Adding <code>type: inverse</code> below the <code>theme</code> line can sometimes change the appearance of each theme as well.</p>
+<p>Note: R Markdown websites using Bootstrap version 3. As of the writing of this document, Bootstrap is available up to version 5 with additional features and themes. Use <a href="https://quarto.org/docs/websites/"><code>quarto</code> websites</a> to leverage more recent versions of Bootstrap.</p>
+</div>
+<div id="add-custom-css" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Add custom css</h2>
+<p>Cascading Style Sheets (<code>css</code>) controls how html content looks. We use <code>css</code> to change colors, fonts, spacing, layout, and other design aspects.</p>
+<p><em>Selectors</em> and <em>rules</em> are the core structure of <code>css</code>.</p>
+<ul>
+<li>You target elements of your webpage (e.g., <code>p</code>, <code>.class</code>, <code>#id</code>) and define style rules for each element inside braces (e.g., <code>color</code>, <code>font-size</code>, <code>margin</code>).</li>
+</ul>
+<p>“Cascading” means that there styles can come from multiple places (browser defaults, external stylesheets, inline styles) and there is a priority for which are used.</p>
+<p>We have already been using <code>css</code> under the hood. E.g., Bootstrap is basically just a style sheet that is set up to control each of the elements of your webpage.</p>
+<p>Check out <code>docs/site_libs/bootstrap-3.3.5/css/bootstrap.css</code> to see what it looks like. This document is far more complex than what we will use “by hand”, but it gives you a flavor for what <code>css</code> looks like.</p>
+<p>If there is a particular element you would like to change, rather than modifying the <code>bootstrap.css</code> file, we can add a new <em>style sheet</em> to our webpage.</p>
+<p>Let’s create a new file called <code>style.css</code>.</p>
+<pre class="bash"><code>touch style.css</code></pre>
+<p>Open this file in R Studio and add the following.</p>
+<pre class="css"><code>/* Default link color */
+a {
+  color: #2C7BE5;  /* pick your favorite color for links */
+  text-decoration: none;
+}
+
+/* Hover state */
+a:hover {
+  color: #1A5BB8;  /* pick your favorite color for links when mouse hovers */
+  text-decoration: underline;
+}</code></pre>
+<p>Here, we are just adding two simple custom styles to our website that define the appearance and behavior of links.</p>
+<p>Some notes:</p>
+<ul>
+<li><code>a</code> is the html element for links. So we are saying select all links and apply the following rules for styling them.</li>
+<li><code>color</code> and <code>text-decoration</code> are two style elements that we are controlling</li>
+<li>All styles for a given target appear between curly braces and all lines end with a semi-colon.</li>
+<li>We are specifying the color in hexidecimal format. You can use <a href="https://www.color-hex.com/">free color pickers</a> to get the hex code for colors that you like.</li>
+</ul>
+<p>In general, LLM’s are reasonably good at generating css if you are able to precisely describe the behavior that you want. Use this to your advantage, but double check that output behaves as expected!</p>
+</div>
+<div id="add-google-font" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Add google font</h2>
+<p>We can also add custom fonts using <a href="https://fonts.google.com">Google fonts</a>. Visit this website to pick a font that you like. Make sure it is a freely available font!</p>
+<p>When you have identified a font that you like:</p>
+<ul>
+<li>Click on the font</li>
+<li>Click <code>Get font</code> in the upper right corner</li>
+<li>Click <code>&lt; &gt; Get embed code</code></li>
+<li>Click <code>@import</code></li>
+<li>Copy the <code>@import</code> line that is shown. You do not need to copy the <code>&lt;style&gt;</code> and <code>&lt;/style&gt;</code> tags</li>
+</ul>
+<p>For example, if I was importing the Lato font, I would copy:</p>
+<pre class="markdown"><code>@import url(&#39;https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&amp;family=Raleway:ital,wght@0,100..900;1,100..900&amp;display=swap&#39;);</code></pre>
+<p>Add this line to the top of <code>style.css</code>.</p>
+<p>Note: this technically imports all versions of the font. If you want ever so slightly faster loading, you could uncheck some of the boxes on the left of the page before generating the embed code.</p>
+<p>Now add the following chunk to your <code>style.css</code> in order to use this font through the body of your document.</p>
+<pre class="css"><code>body {
+    font-family: &#39;Lato&#39;;
+}</code></pre>
+<p>Note: if you picked a different font, you would need to reference that font instead of <code>Lato</code> in the above.</p>
+<p>Here we are telling web browsers to render the entire <code>body</code> of the html document with this font. If you instead only want to change the font of certain elements, you would include the <code>font-family</code> style tag in an entry for those targets.</p>
+<p>You could also add additional style tags to this if you would like. E.g., adding <code>font-size: 19px;</code> will make the font larger.</p>
+</div>
+<div id="style-the-project-page-using-html" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Style the project page using html</h2>
+<p>So far we have been styling using markdown syntax. It is also possible to directly include html. Here, we give one example of that by styling the project page to include <code>cards</code> for each project.</p>
+<p>We are going to replace the contents of the Projects page with the following raw <code>html</code>.</p>
+<pre class="html"><code>&lt;div class=&quot;row&quot;&gt;
+
+&lt;div class=&quot;col-sm-6&quot;&gt;
+&lt;a href=&quot;https://bit.ly/info550&quot; class=&quot;project-link&quot;&gt;
+&lt;div class=&quot;panel panel-default&quot;&gt;
+&lt;div class=&quot;panel-heading&quot;&gt;
+&lt;h3 class=&quot;panel-title&quot;&gt;DATA 550 website&lt;/h3&gt;
+&lt;/div&gt;
+&lt;div class=&quot;panel-body&quot;&gt;
+&lt;p&gt;A Jekyll website I built for previous iterations of this class.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class=&quot;col-sm-6&quot;&gt;
+&lt;a href=&quot;https://github.com/allicodi/vaxstrat&quot; class=&quot;project-link&quot;&gt;
+&lt;div class=&quot;panel panel-default&quot;&gt;
+&lt;div class=&quot;panel-heading&quot;&gt;
+&lt;h3 class=&quot;panel-title&quot;&gt;vaxstrat R package&lt;/h3&gt;
+&lt;/div&gt;
+&lt;div class=&quot;panel-body&quot;&gt;
+&lt;p&gt;An R package for computing principal effects quantifying vaccine impact on post-infection endpoints.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<p>A few notes:</p>
+<ul>
+<li>Markdown parsing is a little bit annoying here and seems to require no indentation to recognize that this is raw html. It makes the formatting a little annoying.</li>
+<li>We are using Bootstrap <a href="https://getbootstrap.com/docs/3.4/components/#panels"><code>panels</code></a> to format our projects.</li>
+<li>The <code>col-sm-6</code> allows for dynamic resizing and stacking of elements.</li>
+</ul>
+<p>This could be further styled as desired using <code>css</code>.</p>
+</div>
+<div id="add-a-favicon" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Add a favicon</h2>
+<p>A final finishing touch is to add a favicon – the icon that you see in a browser tab for your website.</p>
+<p>You can either use an image that you have generated or use a <a href="https://favicon.io/">favicon generator</a>. Save the image as a <code>.png</code> or a <code>.ico</code> and place it in your projects <code>images</code> directory.</p>
+<p>Create a new file called <code>header.html</code> in your project root directory.</p>
+<pre class="bash"><code>touch header.html</code></pre>
+<p>Add the following contents.</p>
+<pre class="html"><code>&lt;link rel=&quot;icon&quot; type=&quot;image/png&quot; href=&quot;images/favicon.ico&quot;/&gt;</code></pre>
+<p>Update your <code>_site.yml</code> file to look like this:</p>
+<pre class="markdown"><code>output:
+  html_document:
+    theme: yeti
+    css: style.css
+    includes: 
+      in_header: header.html</code></pre>
+<p>Re-build the website and you should see the favicon appear!</p>
+<p>To finalize the project, commit all the new files and push to GitHub!</p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
