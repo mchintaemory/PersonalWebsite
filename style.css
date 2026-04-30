@@ -13,3 +13,20 @@ a:hover {
   color: #1A5BB8;  /* pick your favorite color for links when mouse hovers */
   text-decoration: underline;
 }
+/* Navbar background */
+.navbar {
+  background-color: #ffb6c1 !important;  /* soft pink */
+  border-color: #ffb6c1 !important;
+}
+
+/* Navbar text */
+.navbar .navbar-brand,
+.navbar .navbar-nav > li > a {
+  color: white !important;
+  font-weight: 500;
+}
+
+/* Hover effect */
+.navbar .navbar-nav > li > a:hover {
+  color: #ffe6f0 !important;
+}
