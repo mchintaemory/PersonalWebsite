@@ -16,7 +16,7 @@
 <script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -32,6 +32,9 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+<link rel="icon" type="image/png" href="images/favicon.ico"/>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -58,6 +61,7 @@ if (window.hljs) {
 
 
 
+<link rel="stylesheet" href="style.css" type="text/css" />
 
 
 
@@ -243,14 +247,29 @@ $(document).ready(function () {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">Home</a>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
 </li>
 <li>
   <a href="about.html">About</a>
 </li>
+<li>
+  <a href="projects.html">Projects</a>
+</li>
+<li>
+  <a href="files/cv_full.pdf">CV</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/benkeser">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -276,6 +295,19 @@ only a few Rmd documents. For larger-scale and more sophisticated
 websites (such as blogs), you may want to use <strong>blogdown</strong>
 instead: <a href="https://github.com/rstudio/blogdown"
 class="uri">https://github.com/rstudio/blogdown</a>.</p>
+<div class="columns">
+<div class="column" style="text-align: center;">
+<p>```{r, echo=FALSE, fig.align=‘center’, out.width=‘100%’}
+knitr::include_graphics(“images/profile.png”)</p>
+<div id="mirra-chinta" class="section level2">
+<h2>Mirra Chinta</h2>
+</div>
+</div><div class="column" style="text-align: left;">
+<p>I am a graduating MPH student studying Environmental Health and
+Epidemiology with an interest in Reproductive Epidemiology! Add a <a
+href="https://google.com">link</a> so we can see behavior later.</p>
+</div>
+</div>
 
 
 
