@@ -7,3 +7,21 @@ Hello, Website!
 For more information about simple R Markdown websites, please read the documentation at https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html.
 
 Please also note that simple R Markdown sites are _not_ based on **blogdown**. They are probably good for websites with only a few Rmd documents. For larger-scale and more sophisticated websites (such as blogs), you may want to use **blogdown** instead: https://github.com/rstudio/blogdown.
+
+::: columns
+::: {.column width="50%" style="text-align: center;"}
+
+`r ''````{r, echo=FALSE, fig.align='center', out.width='100%'}
+knitr::include_graphics("images/profile.png")
+
+
+## Mirra Chinta
+
+:::
+
+::: {.column width="50%" style="text-align: left;"}
+
+I am a graduating MPH student studying Environmental Health and Epidemiology with an interest in Reproductive Epidemiology! Add a [link](https://google.com) so we can see behavior later. 
+
+:::
+
