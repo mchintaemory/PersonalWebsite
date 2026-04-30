@@ -1,0 +1,541 @@
+---
+title: Personal Website
+output:
+  bookdown::html_document2:
+    theme: flatly
+    highlight: textmate
+    toc: true
+    toc_depth: 2
+    toc_float:
+      collapsed: true
+      smooth_scroll: true
+    number_sections: true
+    code_folding: show
+    fig_width: 7
+    fig_height: 4.5
+    fig_retina: 2
+    df_print: paged
+    self_contained: true
+    css: styles.css
+    includes:
+      in_header: header.html
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+Open the R console and set your working directory to your selected directory.
+
+```{r}
+setwd("C:/Users/mirra/OneDrive/Documents/Website_personal")
+```
+
+## Create website skeleton
+
+We will create a website skeleton using a baked-in command from the `rmarkdown` package.
+
+* Note the use of `:::` in the command below.
+
+```{r}
+rmarkdown:::site_skeleton(getwd())
+```
+
+This will create three files:
+
+* `_site.yml`: this is a file we will edit to control meta-features of the website
+* `about.Rmd` and `index.Rmd`: these are just template files for pages on the website
+
+The basic design of an R Markdown website is to have a `_site.yml` file that controls
+much of the appearance of the website (e.g., the navigation bar, the website theme, 
+directories where files are found/saved, etc...).
+
+Otherwise, each page within the website is created using an `.Rmd` file.
+
+## Create R Project
+
+Let's go ahead and make this directory an R Project, because R Studio tends to play
+more nicely with R Projects.
+
+To do this, go to File: New Project: From Existing Directory and then select the 
+directory where your website lives.
+
+R Studio should be smart enough to figure out that this directory is a website. You can 
+confirm this by looking at the contents of the `website.Rproj` file. For example, you could
+open your Terminal, set working directory to your website directory and execute the following command. You will need to replace `website.Rproj` with the name of your 
+`.Rproj` file name.
+
+```{bash}
+cat Website_personal.Rproj
+```
+
+## Change output directory
+
+This step is not strictly necessary, but is helpful for keeping things tidy.
+
+Open the `_site.yml` file and add the following line at the end.
+
+```{yaml}
+output_dir: docs
+```
+
+Recall that GitHub pages likes looking in a folder called `docs` to find `.html` 
+files that it serves on a GitHub pages website.
+
+## Render the site locally
+
+We will use a command in the R console to build your website. Open the R Console
+and execute the following command.
+
+```{r}
+rmarkdown::render_site()
+```
+
+Check the `docs` folder of your project directory. You should see:
+
+* `about.html` and `index.html`: these are the rendered `html` documents that make up your website
+* `site_libs` directory: this contains all the extra bells and whistles that are needed to make your website look pretty on GitHub pages.
+
+All of these files will need to be committed and pushed to GitHub to get your website working.
+
+## Turn off jekyll
+
+In prepartion for pushing to GitHub, we will add an empty file named `.nojekyll` to your project. This can be done via the Terminal.
+
+```{bash}
+touch .nojekyll
+```
+
+This is not strictly necessary, but it may slightly speed up website deployment when you push new material to GitHub. The presence of this file tells GitHub pages that it doesn't need to rebuild any part of the website before serving the site.
+
+Read more about `jekyll` [here](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll).
+
+
+## Initialize git
+
+Open a terminal, make sure your working directory is set to your project's root directory and execute the following command.
+
+```{bash}
+git init
+```
+
+This initializes a git repository. Let's go ahead and create a `.gitignore` file. As in DATA 550, I like to do this using `touch`. 
+
+```{bash}
+touch .gitignore
+```
+
+Open the `.gitignore` file and add the `.Rproj.user` directory to the `.gitignore`. I will also go ahead and add the `.DS_Store` file that Macs love to create to my `.gitignore` as well. Prior to saving, my `.gitignore` will look like this.
+
+```{bash}
+.Rproj.user/*
+.DS_Store
+```
+
+Now, we can go ahead and make our first commit.
+
+```{bash}
+git add --all
+git commit -m "first commit"
+```
+
+## Initialize GitHub repository
+
+Now hop over to [Github](https://github.com) and create a new repository. Do not initialize with a README and a `.gitignore`. 
+
+Add your GitHub repository as a remote and push using the `ssh` protocol.
+
+```{bash}
+git remote add origin git@github.com:benkeser/example_website
+git push origin main
+```
+
+## Create GitHub pages website
+
+In your web browser, navigate to your GitHub repository.
+
+Click on Settings. Then on the left hand side of the screen, look under `Code and automation` and click on `Pages`.
+
+Leave `Source` set to `Deploy from a branch`.
+
+Under `Branch`, select `main`, select the `docs` folder, and click `Save`.
+
+Your website is now live at https://yourusername.github.io/yourreponame. You can visit that website to confirm.
+
+You can add this website address to your repo description so that it's easy to find.
+
+# Personalizing your website
+
+## General workflow
+
+We will now make some updates to personalize your website. The general workflow for updating your site is as follows:
+
+* Update source code (i.e., `.Rmd` or `_site.yml` files)
+* Compile the website using `rmarkdown::render_site()` to generate new `.html` files
+* Open `docs/index.html` to preview website
+* When satisfied with appearance, `git commit` and `git push` to update the website online
+
+What you see locally will be what you see on GitHub. If the website renders differently online vs. locally, then there is likely an issue of not pushing updated `site_libs` to GitHub. 
+
+In general, you will not want to update the compiled source code (i.e., the `.html` files in the `docs` folder) directly.
+
+## Updating the home page
+
+Let's add a picture of yourself to the home page. First, make an `images` directory.
+
+```{bash}
+mkdir images
+```
+
+Move a picture of yourself to this directory. My picture will be called `profile.png`.
+
+Add a code chunk to `index.Rmd`
+
+````markdown
+`r ''````{r, echo=FALSE, fig.align='center', out.width='40%'}
+knitr::include_graphics("images/profile.png")
+```
+````
+
+Note that we used `out.width='40%'` to specify relative width of the image. This allows the image to scale with different sized browsers
+
+Getting an image to look nice on a website across all possible devices typically requires:
+
+* Reasonably high resolution image
+* Moving away from using just `markdown` to style your page and instead writing `html` and/or `css` directly
+
+Note: when you re-build the website, R Markdown will create a copy of your `images` directory in the `docs` folder. In general, R Markdown will put any referenced files into the `docs` directory. 
+
+* This creates some redundancy, but that is ok unless you are uploading very large files. 
+* It enables a simple workflow wherein you only edit files in your projects root directory and *never* directly modify files in `docs`.
+
+## Adding columns to the homepage
+
+Let's change the layout of the homepage to have two columns. This is something we will (for now) achieve directly with (mostly) `markdown` syntax.
+
+Add the following to `index.Rmd`.
+
+````
+::: columns
+::: {.column width="50%" style="text-align: center;"}
+
+`r ''````{r, echo=FALSE, fig.align='center', out.width='100%'}
+knitr::include_graphics("images/profile.png")
+```
+
+## Your Name
+
+:::
+
+::: {.column width="50%" style="text-align: left;"}
+
+Add some text here describing yourself. Add a [link](https://google.com) so we can see behavior later. 
+
+:::
+````
+
+A few notes: 
+* The above is mostly using Markdown syntax; however, some `css` has crept into the code -- this is the `style="text-align: left;"` bit above. 
+* Notice we have changed `out.width='100%'` in order for the image to span the entire left column.
+
+You can play around a bit with the formatting, but note that the columns do not have the best "reactive" behavior. If you view them on a narrow device, the text will get smaller so that everything fits on the screen. Nicer behavior might be to have the columns stack on top of one another. This would require integrating raw html and/or css, which we discuss later.
+
+## Updating the About page
+
+We will make some light edits to the About page to include some basic information about yourself. 
+
+Remove the auto-generated content and add a few sentences about yourself (e.g., your education background, current jobs, interests, etc...)
+
+## Updating the navigation bar
+
+Let's now update the navigation bar to include some links to "socials". We will do this by updating the `_site.yml` file. I will add a link to my Github. Other links you might want to include:
+
+* Email (beware spam if listing on a website)
+* Google scholar profile
+* Bluesky/X (if that's your thing)
+* ORCID
+* Linked In
+
+Open the `_site.yml` file and modify the `navbar` section it so it looks like this:
+
+````markdown
+navbar:
+  left:
+  - text: Home
+    href: index.html
+    icon: fa-home
+  - text: About
+    href: about.html
+    icon: fa-book-open
+  right:
+  - href: https://github.com/benkeser
+    icon: fa-github
+````
+
+Here, we have added free icons using [`fontawesome`](https://fontawesome.com/). Check out the [R package documentation](https://rstudio.github.io/fontawesome/index.html) to see what icons are available.
+
+## Creating a Projects page
+
+Let's now add a new page linking to some of our projects.
+
+Create a new `.Rmd` file in your project root directory called `projects.Rmd`.
+
+```bash
+touch projects.Rmd
+```
+
+Open this file and edit it to look something like this.
+
+````markdown
+---
+title: "Projects"
+---
+
+### [DATA 550 website](https://bit.ly/info550)
+
+A jeykll website I built for previous iterations of this class
+
+### [`vaxstrat` R package](https://github.com/allicodi/vaxstrat)
+
+An R package for computing principal effects quantifying vaccine impact on post-infection endpoints.
+
+````
+
+Before rendering the site, we should add the Projects page to the `navbar`. Open `_site.yml` and update the `navabar` section.
+
+````markdown
+navbar:
+  left:
+  - text: Home
+    href: index.html
+    icon: fa-home
+  - text: About
+    href: about.html
+    icon: fa-book-open
+  - text: Projects
+    href: projects.html
+    icon: fa-computer
+  right:
+  - href: https://github.com/benkeser
+    icon: fa-github
+````
+
+## Including a CV or resume
+
+Let's also add a pdf resume and link to it. Make a new directory in your project directory to hold a `.pdf` version of your resume or CV.
+
+```bash
+mkdir files
+```
+
+Move your resume into this folder.
+
+Now update the `navbar` section of your `_site.yml` file.
+
+````markdown
+navbar:
+  left:
+  - text: Home
+    href: index.html
+    icon: fa-home
+  - text: About
+    href: about.html
+    icon: fa-book-open
+  - text: Projects
+    href: projects.html
+    icon: fa-computer
+  - text: CV
+    href: files/cv_full.pdf
+    icon: fa-paperclip
+  right:
+  - href: https://github.com/benkeser
+    icon: fa-github
+````
+
+
+# Styling your website
+
+Now that the basic workflow for adding and doing light styling of pages is done, let's see how to make the website look fancier using themes and custom `css` files.
+
+## Add a site theme
+
+The most straightforward way to update the entire appearance of your website is to select a [Bootstrap theme](https://getbootstrap.com/).
+
+To do this update your `_site.yml` file to include a section specifying the theme.
+
+````markdown
+output:
+  html_document:
+    theme: yeti
+````
+
+There are several default themes:
+
+* `default`, `cerulean`, `journal`, `flatly`, `darkly`, `readable`, `spacelab`, `united`, `cosmo`, `lumen`, `paper`, `sandstone`, `simplex`, and `yeti` (use `null` for no theme)
+
+Adding `type: inverse` below the `theme` line can sometimes change the appearance of each theme as well.
+
+Note: R Markdown websites using Bootstrap version 3. As of the writing of this document, Bootstrap is available up to version 5 with additional features and themes. Use [`quarto` websites](https://quarto.org/docs/websites/) to leverage more recent versions of Bootstrap.
+
+## Add custom css
+
+Cascading Style Sheets (`css`) controls how html content looks. We use `css` to change colors, fonts, spacing, layout, and other design aspects.
+
+*Selectors* and *rules* are the core structure of `css`.
+
+* You target elements of your webpage (e.g., `p`, `.class`, `#id`) and define style rules for each element inside braces (e.g., `color`, `font-size`, `margin`).
+
+"Cascading" means that there styles can come from multiple places (browser defaults, external stylesheets, inline styles) and there is a priority for which are used.
+
+We have already been using `css` under the hood. E.g., Bootstrap is basically just a style sheet that is set up to control each of the elements of your webpage.
+
+Check out `docs/site_libs/bootstrap-3.3.5/css/bootstrap.css` to see what it looks like. This document is far more complex than what we will use "by hand", but it gives you a flavor for what `css` looks like.
+
+If there is a particular element you would like to change, rather than modifying the `bootstrap.css` file, we can add a new *style sheet* to our webpage.
+
+Let's create a new file called `style.css`.
+
+```bash
+touch style.css
+```
+
+Open this file in R Studio and add the following.
+
+```{css}
+/* Default link color */
+a {
+  color: #2C7BE5;  /* pick your favorite color for links */
+  text-decoration: none;
+}
+
+/* Hover state */
+a:hover {
+  color: #1A5BB8;  /* pick your favorite color for links when mouse hovers */
+  text-decoration: underline;
+}
+```
+
+Here, we are just adding two simple custom styles to our website that define the appearance and behavior of links.
+
+Some notes:
+
+* `a` is the html element for links. So we are saying select all links and apply the following rules for styling them.
+* `color` and `text-decoration` are two style elements that we are controlling
+* All styles for a given target appear between curly braces and all lines end with a semi-colon.
+* We are specifying the color in hexidecimal format. You can use [free color pickers](https://www.color-hex.com/) to get the hex code for colors that you like.
+
+In general, LLM's are reasonably good at generating css if you are able to precisely describe the behavior that you want. Use this to your advantage, but double check that output behaves as expected!
+
+## Add google font
+
+We can also add custom fonts using [Google fonts](https://fonts.google.com). Visit this website to pick a font that you like. Make sure it is a freely available font!
+
+When you have identified a font that you like:
+
+* Click on the font
+* Click `Get font` in the upper right corner
+* Click `< > Get embed code`
+* Click `@import`
+* Copy the `@import` line that is shown. You do not need to copy the `<style>` and `</style>` tags
+
+For example, if I was importing the Lato font, I would copy:
+
+````markdown
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+````
+
+Add this line to the top of `style.css`.
+
+Note: this technically imports all versions of the font. If you want ever so slightly faster loading, you could uncheck some of the boxes on the left of the page before generating the embed code.
+
+Now add the following chunk to your `style.css` in order to use this font through the body of your document.
+
+```{css}
+body {
+    font-family: 'Lato';
+}
+```
+
+Note: if you picked a different font, you would need to reference that font instead of `Lato` in the above. 
+
+Here we are telling web browsers to render the entire `body` of the html document with this font. If you instead only want to change the font of certain elements, you would include the `font-family` style tag in an entry for those targets.
+
+You could also add additional style tags to this if you would like. E.g., adding `font-size: 19px;` will make the font larger. 
+
+## Style the project page using html
+
+So far we have been styling using markdown syntax. It is also possible to directly include html. Here, we give one example of that by styling the project page to include `cards` for each project. 
+
+We are going to replace the contents of the Projects page with the following raw `html`.
+
+```{html}
+<div class="row">
+
+<div class="col-sm-6">
+<a href="https://bit.ly/info550" class="project-link">
+<div class="panel panel-default">
+<div class="panel-heading">
+<h3 class="panel-title">DATA 550 website</h3>
+</div>
+<div class="panel-body">
+<p>A Jekyll website I built for previous iterations of this class.</p>
+</div>
+</div>
+</a>
+</div>
+<div class="col-sm-6">
+<a href="https://github.com/allicodi/vaxstrat" class="project-link">
+<div class="panel panel-default">
+<div class="panel-heading">
+<h3 class="panel-title">vaxstrat R package</h3>
+</div>
+<div class="panel-body">
+<p>An R package for computing principal effects quantifying vaccine impact on post-infection endpoints.</p>
+</div>
+</div>
+</a>
+</div>
+</div>
+```
+
+A few notes:
+
+* Markdown parsing is a little bit annoying here and seems to require no indentation to recognize that this is raw html. It makes the formatting a little annoying.
+* We are using Bootstrap [`panels`](https://getbootstrap.com/docs/3.4/components/#panels) to format our projects.
+* The `col-sm-6` allows for dynamic resizing and stacking of elements.
+
+This could be further styled as desired using `css`.
+
+
+## Add a favicon
+
+A final finishing touch is to add a favicon -- the icon that you see in a browser tab for your website.
+
+You can either use an image that you have generated or use a [favicon generator](https://favicon.io/). Save the image as a `.png` or a `.ico` and place it in your projects `images` directory.
+
+Create a new file called `header.html` in your project root directory.
+
+```{bash}
+touch header.html
+```
+
+Add the following contents.
+
+```{html}
+<link rel="icon" type="image/png" href="images/favicon.ico"/>
+```
+
+Update your `_site.yml` file to look like this:
+
+````markdown
+output:
+  html_document:
+    theme: yeti
+    css: style.css
+    includes: 
+      in_header: header.html
+````
+
+Re-build the website and you should see the favicon appear!
+
+To finalize the project, commit all the new files and push to GitHub!
