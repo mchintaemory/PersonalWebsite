@@ -5,10 +5,12 @@ title: "Projects"
 ## Interactive Dashboard Looking at Prevalence of Ovarian Cysts and PBB-153 and PCBs exposure
 
 [View Dashboard](https://ai2w8v-mirra-chinta.shinyapps.io/CurrentTopicsViz/#section-analysis)
+<i class="fa fa-github"></i> [View Code](https://github.com/mchintaemory/ILE)
 
 This interactive dashboard explores ovarian cyst prevalence with PCBs and PBB-153 exposure, showing spine plots and forest plots. It includes data visualizations and analysis tools built using R Shiny.
 
 ## DNA Methylation Volcano Plot
+<i class="fa fa-github"></i> [View Code](https://github.com/mchintaemory/OmicsFinal)
 
 ![](images/VolcanoPlot.png)
 
