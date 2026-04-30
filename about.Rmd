@@ -1,5 +1,11 @@
 ---
-title: "About This Website"
+title: "Socials"
 ---
 
-More about this website.
+## Connect with me
+
+You can find me here:
+
+- <i class="fa fa-linkedin"></i> [LinkedIn](https://www.linkedin.com/mirrac)
+
+- <i class="fa fa-github"></i> [GitHub](https://github.com/mchintaemory)

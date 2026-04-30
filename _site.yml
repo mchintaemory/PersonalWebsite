@@ -7,15 +7,18 @@ navbar:
     - text: Home
       href: index.html
       icon: fa-home
-    - text: About
+    - text: Socials
       href: about.html
+      icon: fa-linkedin
     - text: Projects
       href: projects.html
     - text: CV
       href: files/cv_full.pdf
   right:
-    - href: https://github.com/benkeser
+    - href: https://github.com/mchintaemory
       icon: fa-github
+    - href: https://www.linkedin.com/in/mirrac
+      icon: fa-linkedin
 
 output:
   html_document:
