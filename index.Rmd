@@ -1,27 +1,22 @@
 ---
-title: "My Website"
+title: "Mirra's Personal Website"
 ---
-
-Hello, Website!
-
-For more information about simple R Markdown websites, please read the documentation at https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html.
-
-Please also note that simple R Markdown sites are _not_ based on **blogdown**. They are probably good for websites with only a few Rmd documents. For larger-scale and more sophisticated websites (such as blogs), you may want to use **blogdown** instead: https://github.com/rstudio/blogdown.
-
-::: columns
-::: {.column width="50%" style="text-align: center;"}
-
-{r, echo=FALSE, fig.align='center', out.width='100%'}
-knitr::include_graphics("images/profile.png")
-
 
 ## Mirra Chinta
 
-:::
+I am a graduating MPH student studying Environmental Health and Epidemiology, with an interest in reproductive epidemiology and environmental exposures.
 
-::: {.column width="50%" style="text-align: left;"}
+My work focuses on analyzing how chemical exposures impact health outcomes using data science and statistical methods.
 
-I am a graduating MPH student studying Environmental Health and Epidemiology with an interest in Reproductive Epidemiology! Add a [link](https://google.com) so we can see behavior later. 
+---
 
-:::
+### My Interests Include:
+- Environmental Health  
+- Reproductive Epidemiology  
+- Data Science & Biostatistics  
+
+---
+
+### Explore my website:
+You can see my projects involving my Independent Learning Experience project and a project for my Omics class where I explored the relationship between DNA methylation and late onset sepsis.
 
